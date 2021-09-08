@@ -37,12 +37,12 @@
 
     <script>
       function binary(z) {
-        console.log('calculate ' + z);
-
         while (z > 0) {
           let rest = z % 2;
-          z = parseInt(z / 2);
           let div = document.createElement("div");
+          
+          z = parseInt(z / 2);
+          
           div.innerText = rest;
           output.appendChild(div);
         }
