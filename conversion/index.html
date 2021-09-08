@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScript: Binäre Umwandlung</title>
+    <noscript>
+      Sie haben JavaScript deaktiviert.
+    </noscript>
+
+    <style>
+      .output {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: start;
+        font-size: 20px;
+      }
+
+      .output * {
+        width:  15px;
+        height: 20px;
+      }
+
+      .output *:last-child,
+      .output *:nth-child(4n+0) {
+        margin-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Dezimalzahl</p>
+    <input type="number" name="decimal" id="input" placeholder="Dezimalzahl">
+    <input type="number" name="system" id="numbersystem" value="2">
+    <button id="calculate">Berechnen</button>
+
+    <p style="margin-top: 20px;">Output</p>
+    <div class="output" id="output"></div>
+
+    <script>
+      function getCharValue(number) {
+        values = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
+
+        if (values.length <= number) {
+          return number;
+        }
+
+        return values[number];
+      }
+
+      function binary(z, y) {
+        while (z > 0) {
+          let rest = z % y;
+          let div = document.createElement("div");
+
+          if (rest > 9) {
+            rest = getCharValue(rest);
+          }
+          
+          z = parseInt(z / y);
+          
+          div.innerText = rest;
+          output.appendChild(div);
+        }
+      }
+
+      function check() {
+        const value = parseInt(input.value);
+        const systemvalue = parseInt(numbersystem.value);
+        output.innerHTML = '';
+
+        if (!value || !systemvalue) {
+          output.innerText = 'please enter numbers!';
+          return;
+        }
+
+        binary(value, systemvalue);
+      }
+
+      const button = document.getElementById('calculate');
+      const input = document.getElementById('input');
+      const numbersystem = document.getElementById('numbersystem');
+      const output = document.getElementById('output');
+
+      button.onclick = function() {
+        check();
+      }
+
+      input.addEventListener('change', (e) => {
+        check();
+      });
+    </script>
+  </body>
+</html>
