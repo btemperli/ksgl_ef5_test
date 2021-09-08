@@ -42,7 +42,6 @@
         while (z > 0) {
           let rest = z % 2;
           z = parseInt(z / 2);
-          console.log(rest);
           let div = document.createElement("div");
           div.innerText = rest;
           output.appendChild(div);
@@ -54,7 +53,7 @@
         output.innerHTML = '';
 
         if (!value) {
-          console.log('please enter a number!');
+          output.innerText = 'please enter a number!';
           return;
         }
 
