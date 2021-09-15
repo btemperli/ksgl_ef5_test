@@ -36,6 +36,9 @@
     <div class="output" id="output"></div>
 
     <script>
+      /**
+       * Get the real Value of a number for the bigger numbersystems greater than 9.
+       */
       function getCharValue(number) {
         values = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
 
@@ -46,7 +49,10 @@
         return values[number];
       }
 
-      function binary(z, y) {
+      /**
+       * Convert a number z based on the numbersystem y.
+       */
+      function convert(z, y) {
         while (z > 0) {
           let rest = z % y;
           let div = document.createElement("div");
@@ -62,6 +68,10 @@
         }
       }
 
+      /**
+       * Check the entries.
+       * Add error-message if there are not only integers...
+       */
       function check() {
         const value = parseInt(input.value);
         const systemvalue = parseInt(numbersystem.value);
@@ -72,18 +82,21 @@
           return;
         }
 
-        binary(value, systemvalue);
+        convert(value, systemvalue);
       }
 
+      // Get all HTML-Elements.
       const button = document.getElementById('calculate');
       const input = document.getElementById('input');
       const numbersystem = document.getElementById('numbersystem');
       const output = document.getElementById('output');
 
+      // Start calculation on button-click.
       button.onclick = function() {
         check();
       }
 
+      // Start calculation on input-change.
       input.addEventListener('change', (e) => {
         check();
       });
